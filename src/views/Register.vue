@@ -5,6 +5,11 @@
         
         <div class="columns is-centered">
             <div class="column is-half">
+                <div v-if="error != undefined">                    
+                    <div class="notification is-danger">                        
+                        <p>{{error}}</p>
+                    </div>                    
+                </div>
                 <p>Name</p>
                 <input type="text" placeholder="Name of user" class="input" v-model="name">
                 <p>E-mail</p>
@@ -25,7 +30,8 @@ import axios from "axios";
             return {
                 name: "",
                 password: "",
-                email: ""
+                email: "",
+                error: undefined
             }
         }, 
         methods:{            
@@ -34,11 +40,11 @@ import axios from "axios";
                     name: this.name,
                     password: this.password,
                     email: this.email
-                }).then(res => {
-                    console.log(res)
+                }).then(() => {
+                    this.$router.push({name: "Home"})
                 }).catch(err => {
                     var msgError = err.response.data.err
-                    console.log(msgError)
+                    this.error = msgError
                 })
             }
         }

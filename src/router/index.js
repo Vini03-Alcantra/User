@@ -5,7 +5,7 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue"
 import Users from "../views/Users.vue"
 import Axios from "axios";
-
+import Edit from "../views/Edit";
 
 function AdminAuth(to, from, next){
   if (localStorage.getItem("token") != undefined) {
@@ -50,6 +50,12 @@ const routes = [
     path: "/admin/users",
     name: "Users",
     component: Users,
+    beforeEnter: AdminAuth
+  },
+  {
+    path: "/admin/users/edit/:id",
+    name: "UsersEdit",
+    component: Edit,
     beforeEnter: AdminAuth
   },
   {

@@ -53,11 +53,18 @@ import axios from "axios";
         }, 
         methods:{            
             update(){
-                axios.post("http://localhost:8686/user", {
+                var req = {
+                    headers:{
+                        Authorization: "Bearer " + localStorage.getItem("token")
+                    }
+                }
+                axios.put("http://localhost:8686/user", {
                     name: this.name,                    
-                    email: this.email
-                }).then(() => {
-                    this.$router.push({name: "Home"})
+                    email: this.email,
+                    id: this.id
+                }, req).then((res) => {
+                    console.log(res)
+                    this.$router.push({name: "Users"})
                 }).catch(err => {
                     var msgError = err.response.data.err
                     this.error = msgError

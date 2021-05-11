@@ -54,7 +54,7 @@ const routes = [
   },
   {
     path: "/admin/users/edit/:id",
-    name: "UsersEdit",
+    name: "UserEdit",
     component: Edit,
     beforeEnter: AdminAuth
   },
